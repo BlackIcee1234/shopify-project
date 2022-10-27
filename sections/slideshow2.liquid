@@ -1,14 +1,13 @@
-<section id="shopify-section-[id]" class="shopify-section">
-  Mi primera página en shopify
+  <link rel="stylesheet" href="../splide.min.css">
+  <script src="../splide.min.js"></script>
   <section class="splide" aria-label="Splide Basic HTML Example">
   <div class="splide__track">
 		<ul class="splide__list">
-            {% for block in section.blocks %}
-              <li class="splide__slide">{{ block.settings.image | img_url: '100x100' | img_tag }}</li>
-            {% endfor %}
+      {% for block in section.blocks %}
+        <li class="splide__slide">{{ block.settings.image | img_url: '100x100' | img_tag }}</li>
+      {% endfor %}
 		</ul>
   </div>
-</section>
 </section>
 {% schema %}
   {
@@ -43,4 +42,8 @@
 {% endstylesheet %}
 
 {% javascript %}
+  document.addEventListener( 'DOMContentLoaded', function() {
+    var splide = new Splide( '.splide' );
+    splide.mount();
+  } );
 {% endjavascript %}
