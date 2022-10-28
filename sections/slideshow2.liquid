@@ -1,19 +1,26 @@
-  <link rel="stylesheet" href="../splide.min.css">
-  <script src="../splide.min.js"></script>
-  <section class="splide" aria-label="Splide Basic HTML Example">
+<section class="splide" aria-label="Splide Basic HTML Example">
   <div class="splide__track">
-		<ul class="splide__list">
+    <ul class="splide__list">
       {% for block in section.blocks %}
-        <li class="splide__slide">{{ block.settings.image | img_url: '100x100' | img_tag }}</li>
+        <li class="splide__slide">
+          {{ block.settings.image | img_url: 'master' | img_tag:'Imagen','img'}}
+        </li>
       {% endfor %}
-		</ul>
+    </ul>
   </div>
 </section>
+{% javascript %}
+  document.addEventListener('DOMContentLoaded', function() {
+    var splide = new Splide('.splide');
+    splide.mount();
+  });
+{% endjavascript %}
+
 {% schema %}
   {
     "name": "Slideshow de Axel",
-    "tag" : "section",
-    "class" : "slideshow",
+    "tag": "section",
+    "class": "slideshow",
     "limit": 1,
     "settings": [
       {
@@ -21,29 +28,25 @@
         "id": "header",
         "label": "Header"
       }
-    ], 
+    ],
     "blocks": [
-     {
-       "name": "Slide",
-       "type": "slide",
-       "settings": [
-         {
-           "type": "image_picker",
-           "id": "image",
-           "label": "Image"
-         }
-       ]
-     }
-   ]
+      {
+        "name": "Slide",
+        "type": "slide",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }
+        ]
+      }
+    ]
   }
 {% endschema %}
 
 {% stylesheet %}
+  .img {
+    width: 100%;
+  }
 {% endstylesheet %}
-
-{% javascript %}
-  document.addEventListener( 'DOMContentLoaded', function() {
-    var splide = new Splide( '.splide' );
-    splide.mount();
-  } );
-{% endjavascript %}
